@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cotizaciones ago–oct 2026</title>
+<style>
+:root{--bg:#0f1b2d;--card:#162840;--line:#2c4363;--ink:#eef3f9;--mut:#9fb2c8;--teal:#2dd4bf;--amber:#fbbf24;--rose:#fb7185;--blue:#60a5fa}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+header{height:52px;display:flex;align-items:center;gap:8px;padding:0 20px;border-bottom:1px solid var(--line)}
+header .brand{font-weight:700;margin-right:auto}
+.tab{background:transparent;color:var(--mut);border:1px solid var(--line);padding:6px 14px;border-radius:999px;cursor:pointer;font-size:14px}
+.tab.on{background:var(--teal);color:#06231f;border-color:var(--teal);font-weight:600}
+main{position:relative;height:calc(100% - 52px - 48px)}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:24px 36px;overflow-y:auto}
+.slide.active{display:flex}
+h2{font-size:clamp(22px,2.8vw,32px);margin-bottom:4px}
+.sub{color:var(--mut);margin-bottom:16px;font-size:clamp(14px,1.5vw,17px)}
+.kicker{color:var(--teal);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g6{grid-template-columns:repeat(6,1fr)}
+.g2{grid-template-columns:1fr 1fr}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.card h3{font-size:14px;color:var(--mut);font-weight:600;margin-bottom:6px}
+.big{font-size:clamp(22px,2.4vw,30px);font-weight:700;line-height:1.1}
+.note{color:var(--mut);font-size:12.5px;margin-top:5px}
+svg{width:100%;height:auto;display:block}
+svg text{font-family:inherit;fill:var(--ink);font-size:12px}
+svg .m{fill:var(--mut)}
+ul.pts{list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.pts li{padding-left:18px;position:relative;line-height:1.45;font-size:14.5px}
+ul.pts li:before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.good{color:var(--teal)}.bad{color:var(--rose)}.warn{color:var(--amber)}
+.take{margin-top:14px;font-size:15px;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+th,td{padding:6px 4px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--mut);font-weight:600;font-size:11.5px;text-transform:uppercase}
+.check{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:14px;padding:20px 22px;font-size:clamp(16px,1.9vw,21px)}
+.check .box{flex:none;width:38px;height:38px;border-radius:10px;background:var(--teal);color:#06231f;display:grid;place-items:center;font-size:24px;font-weight:800}
+.check .st{margin-left:auto;color:var(--teal);font-size:14px;font-weight:600;white-space:nowrap}
+.checks{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+footer{height:48px;display:flex;align-items:center;justify-content:center;gap:16px;border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+footer button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 16px;cursor:pointer}
+footer button:hover{border-color:var(--teal)}
+@media (max-width:900px){.g3,.g2{grid-template-columns:1fr}.g6{grid-template-columns:repeat(2,1fr)}.slide{padding:18px}.check .st{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">Seguimiento de cotizaciones</span>
+  <button class="tab" data-go="0">1 · Evolución ago–oct</button>
+  <button class="tab" data-go="1">2 · Octubre 2026</button>
+  <button class="tab" data-go="2">3 · Pendientes</button>
+</header>
+
+<main>
+  <!-- 1 Evolución -->
+  <section class="slide">
+    <div class="kicker">Hoja 1 · Evolución desde agosto</div>
+    <h2>Más volumen y mejor cumplimiento; falta convertir en cierres</h2>
+    <p class="sub">Indicadores mensuales del formato de cotizaciones-semaforización.</p>
+    <div class="grid g3">
+      <div class="card"><h3>Efectividad de realización de cotizaciones</h3><div id="c1"></div></div>
+      <div class="card"><h3>Cotizaciones presentadas vs. aceptadas</h3><div id="c2"></div>
+        <p class="note"><span style="color:#60a5fa">■</span> Presentadas &nbsp; <span style="color:#2dd4bf">■</span> Aceptadas</p></div>
+      <div class="card"><h3>Índice de aceptación (límite: 80%)</h3><div id="c3"></div></div>
+    </div>
+    <p class="take">
+      <span class="good">●</span> Efectividad: <b>84% → 83% → 95%</b> (+12 pts vs. septiembre). &nbsp;
+      <span class="good">●</span> Presentadas: <b>32 → 58</b> (+81%); aceptadas: <b>12</b> en octubre, el doble que en septiembre. &nbsp;
+      <span class="warn">●</span> Aceptación: <b>25% → 11% → 21%</b>, aún muy por debajo del 80%.
+    </p>
+  </section>
+
+  <!-- 2 Octubre -->
+  <section class="slide">
+    <div class="kicker">Hoja 2 · Octubre 2026</div>
+    <h2>Análisis de octubre</h2>
+    <p class="sub">Resultado del equipo: Elder y oficina, Mavi, Jorge y Claudia.</p>
+    <div class="grid g6">
+      <div class="card"><h3>Cotizaciones</h3><div class="big">61</div><p class="note">58 realizadas</p></div>
+      <div class="card"><h3>Efectividad</h3><div class="big good">95%</div><p class="note">realización</p></div>
+      <div class="card"><h3>Ventas</h3><div class="big">12</div><p class="note">21% de aceptación</p></div>
+      <div class="card"><h3>Cotizado</h3><div class="big">$868,6 M</div><p class="note">$868.579.786</p></div>
+      <div class="card"><h3>Vendido</h3><div class="big">$26,5 M</div><p class="note">$26.531.583</p></div>
+      <div class="card"><h3>Efectiv. en $</h3><div class="big bad">3%</div><p class="note">vendido / cotizado</p></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><h3>Conversión por asesor (ventas / cotizaciones realizadas)</h3>
+        <div id="c4" style="max-width:420px;margin:0 auto"></div>
+        <table>
+          <thead><tr><th>Asesor</th><th>Realiz.</th><th>Ventas</th><th>Cotizado</th><th>Vendido</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table></div>
+      <div class="card"><h3>Conclusiones</h3>
+        <ul class="pts">
+          <li><b>Claudia</b> concentra el 52% de las cotizaciones y 7 de las 12 ventas.</li>
+          <li><b>Jorge</b> tiene la mejor conversión (33%); <b>Mavi</b> cotiza el mayor valor por cotización.</li>
+          <li><b>Elder y oficina:</b> 8 cotizaciones ($105 M) sin ventas en el mes.</li>
+          <li>Las <b>8 cotizaciones en comodato</b> ($125 M) no fueron aceptadas.</li>
+          <li>Cada venta cerrada ronda <b>$2,2 M</b>, frente a unos <b>$15 M</b> por cotización: los cierres son de ticket bajo.</li>
+          <li><b>Foco:</b> seguimiento a las cotizaciones de mayor valor para subir la aceptación.</li>
+        </ul></div>
+    </div>
+  </section>
+
+  <!-- 3 Checklist -->
+  <section class="slide">
+    <div class="kicker">Cierre · Pendientes de la última reunión</div>
+    <h2>Actividades pendientes: completadas con éxito</h2>
+    <p class="sub">3 de 3 tareas finalizadas.</p>
+    <div class="checks">
+      <div class="check"><div class="box">✓</div><div>Configuración e instalación de dispositivo de control de acceso y asistencia.</div><div class="st">Completada</div></div>
+      <div class="check"><div class="box">✓</div><div>Desarrollo e implementación de app para la facturación en el área logística.</div><div class="st">Completada</div></div>
+      <div class="check"><div class="box">✓</div><div>Carga de códigos de barra al sistema.</div><div class="st">Completada</div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <button id="prev">← Anterior</button>
+  <span id="count">1 / 3</span>
+  <button id="next">Siguiente →</button>
+</footer>
+
+<script>
+const C={blue:"#60a5fa",teal:"#2dd4bf",amber:"#fbbf24",rose:"#fb7185"};
+function barChart(labels,series,o){
+  const W=320,H=210,pt=26,pb=30,pl=12,pr=12,n=labels.length;
+  const gw=(W-pl-pr)/n,bw=Math.min(50,(gw-16)/series.length);
+  const y=v=>H-pb-(v/o.max)*(H-pb-pt);
+  let s=`<svg viewBox="0 0 ${W} ${H}">`;
+  s+=`<line x1="${pl}" x2="${W-pr}" y1="${H-pb}" y2="${H-pb}" stroke="#2c4363"/>`;
+  if(o.line!=null){
+    s+=`<line x1="${pl}" x2="${W-pr}" y1="${y(o.line)}" y2="${y(o.line)}" stroke="${C.rose}" stroke-dasharray="4 4"/>`;
+    s+=`<text x="${W-pr}" y="${y(o.line)-4}" text-anchor="end" style="fill:${C.rose}">${o.lineLabel}</text>`;
+  }
+  labels.forEach((l,i)=>{
+    const cx=pl+gw*i+gw/2,tw=bw*series.length;
+    series.forEach((se,j)=>{
+      const x=cx-tw/2+j*bw,v=se.values[i],top=y(v);
+      const col=Array.isArray(se.color)?se.color[i]:se.color;
+      s+=`<rect x="${x+2}" y="${top}" width="${bw-4}" height="${Math.max(H-pb-top,0)}" rx="4" fill="${col}"/>`;
+      s+=`<text x="${x+bw/2}" y="${top-6}" text-anchor="middle">${o.fmt(v)}</text>`;
+    });
+    s+=`<text class="m" x="${cx}" y="${H-10}" text-anchor="middle">${l}</text>`;
+  });
+  return s+"</svg>";
+}
+const pct=v=>v+"%",num=v=>String(v),M=["Agosto","Septiembre","Octubre"];
+document.getElementById("c1").innerHTML=barChart(M,[{values:[84,83,95],color:[C.blue,C.blue,C.teal]}],{max:100,fmt:pct});
+document.getElementById("c2").innerHTML=barChart(M,[{values:[32,57,58],color:C.blue},{values:[8,6,12],color:C.teal}],{max:65,fmt:num});
+document.getElementById("c3").innerHTML=barChart(M,[{values:[25,11,21],color:[C.blue,C.blue,C.teal]}],{max:100,fmt:pct,line:80,lineLabel:"Límite 80%"});
+document.getElementById("c4").innerHTML=barChart(["Elder y of.","Mavi","Jorge","Claudia"],[{values:[0,17,33,22],color:[C.rose,C.amber,C.teal,C.blue]}],{max:40,fmt:pct,line:21,lineLabel:"General 21%"});
+const A=[["Elder y oficina","8/8",0,"$105,2 M","$0"],["Mavi","6/8",1,"$154,5 M","$1,9 M"],["Jorge","12/13",4,"$263,5 M","$10,3 M"],["Claudia","32/32",7,"$345,3 M","$14,4 M"]];
+document.getElementById("rows").innerHTML=A.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("");
+
+const slides=[...document.querySelectorAll(".slide")],tabs=[...document.querySelectorAll(".tab")];
+let cur=0;
+function show(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,k)=>s.classList.toggle("active",k===cur));
+  document.getElementById("count").textContent=(cur+1)+" / "+slides.length;
+  tabs.forEach(t=>t.classList.toggle("on",+t.dataset.go===cur));
+}
+document.getElementById("prev").onclick=()=>show(cur-1);
+document.getElementById("next").onclick=()=>show(cur+1);
+tabs.forEach(t=>t.onclick=()=>show(+t.dataset.go));
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key===" ")show(cur+1);if(e.key==="ArrowLeft")show(cur-1)});
+show(0);
+</script>
+</body>
+</html>
